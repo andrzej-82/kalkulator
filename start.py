@@ -1,4 +1,4 @@
-from my_math import my_math
+from my_math import my_math as m
 
 def pobierz_rodzaj_dzialania():
     dzialanieIN = input("\nPodaj rodzaj dzialania, q - jezeli chcesz wyjsc\n (+, -, *, /):\t")
@@ -10,6 +10,10 @@ def pobierz_rodzaj_dzialania():
         print("\n\tnieprawidlowy wybor !!!")
         pobierz_rodzaj_dzialania()
 
+def wykonaj_dzialanie(funkcja, liczba1, liczba2):
+    return funkcja(liczba1,liczba2)
+
+
 
 while True:
     dzialanie = pobierz_rodzaj_dzialania()
@@ -20,11 +24,5 @@ while True:
         liczba2 = float(input("Podaj druga liczba   : "))
     except:
         print("\nNieodpowiednie dane wejsciowe!\n")
-    if dzialanie == '+':
-        print("Wynik:",my_math.dodawanie(liczba1, liczba2))
-    elif dzialanie == '-':
-        print("Wynik:", my_math.odejmowanie(liczba1, liczba2))
-    elif dzialanie == '*':
-        print("Wynik:",my_math.mnozenie(liczba1, liczba2))
-    if dzialanie == '\\':
-        print("Wynik:",my_math.dzielenie(liczba1, liczba2))
+    slownik_dzialan = {'+':m.dodawanie, '-':m.odejmowanie, '*':m.mnozenie, '/':m.dzielenie}
+    print("Wynik dzialania: ", wykonaj_dzialanie(slownik_dzialan[dzialanie], liczba1, liczba2))
